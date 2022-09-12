@@ -1,43 +1,70 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<link href="template/css/newstyle.css" rel="stylesheet" />
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+    <div class="col-lg-6">
+      <div class="field">
+        <h1 class= "row font-weight-bold justify-content-center "> EDIT PROFILE</h1>
+        <hr class="divider" />
+      </div> 
+      <div class="col-lg-20">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag(current_user.avatar, style:"width:100px")%>
+      <% else %>
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNzUycHQiIGhlaWdodD0iNzUycHQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDc1MiA3NTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8Zz4KICA8cGF0aCBkPSJtMzc3LjQzIDE3Ni42NWMtMTA4LjQzIDAtMTk2LjYzIDg4LjIwMy0xOTYuNjMgMTk2LjYzIDAgNjQuMzUyIDMxLjA2NiAxMjEuNTggNzguOTk2IDE1Ny40NyAzMi44MjQgMjQuNTc4IDczLjU1NSAzOS4xNiAxMTcuNjMgMzkuMTYgNDQuMDY2IDAgODQuNzkzLTE0LjU3OCAxMTcuNjEtMzkuMTYgNDcuOTMtMzUuODg3IDc5LjAxMi05My4xMjEgNzkuMDEyLTE1Ny40NyAwLTEwOC40My04OC4yMDctMTk2LjYzLTE5Ni42Mi0xOTYuNjN6bTExMS45NSAzMTQuMzhjLTAuOTYwOTQtNS4xMDk0LTEuODcxMS04LjcwMzEtMi42Nzk3LTEwLjM2My0xNi4xOTUtMzMuMDk4LTQxLjI5My01My4yNDYtMTAyLjk0LTUzLjI0NmgtMTIuNjUyYy02MS42NTIgMC04Ni43NSAyMC4xNDUtMTAyLjk1IDUzLjI0Ni0wLjgxNjQxIDEuNjY0MS0xLjcxODggNS4yNTM5LTIuNjgzNiAxMC4zNjMtMzEuMTUyLTI5LjYzNy01MC42MDItNzEuNDY1LTUwLjYwMi0xMTcuNzUgMC04OS42MzMgNzIuOTIyLTE2Mi41NiAxNjIuNTctMTYyLjU2IDg5LjYyOSAwIDE2Mi41NSA3Mi45MjIgMTYyLjU1IDE2Mi41Ni0wLjAwNzgxMiA0Ni4yODEtMTkuNDUzIDg4LjExMy01MC42MTcgMTE3Ljc1eiIvPgogIDxwYXRoIGQ9Im0zNzcuNTIgMjc5Ljk0Yy0zNi41NDMgMC02Ni4xNDUgMjkuNTUxLTY2LjE0NSA2Ni4wOTggMCAzNi40NDUgMjkuNjEzIDY2LjAwNCA2Ni4xNDUgNjYuMDA0IDM2LjM5MSAwIDY1Ljk1Ny0yOS41NTUgNjUuOTU3LTY2LjAwNCAwLjAwMzkwNi0zNi41NDctMjkuNTY2LTY2LjA5OC02NS45NTctNjYuMDk4em0wLjM5NDUzIDExMS44OGMtNC41NTA4IDAtOC4yNS0zLjY5NTMtOC4yNS04LjI0MjIgMC00LjU1MDggMy42OTkyLTguMjMwNSA4LjI1LTguMjMwNSA0LjU0NjkgMCA4LjE5OTIgMy42Nzk3IDguMTk5MiA4LjIzMDUgMCA0LjU0NjktMy42NTIzIDguMjQyMi04LjE5OTIgOC4yNDIyem0yNC41MzktNTcuODY3Yy0wLjg5NDUzIDIuMjE0OC0yLjAwMzkgNC4xMDU1LTMuMzIwMyA1LjY3OTctMS4zMjAzIDEuNTc0Mi0yLjc5MyAyLjkxNDEtNC4zOTg0IDQuMDE5NS0xLjYwOTQgMS4xMDk0LTMuMTI1IDIuMjE0OC00LjU1NDcgMy4zMjQyLTEuNDMzNiAxLjEwOTQtMi42OTUzIDIuMzcxMS0zLjgwODYgMy44MDQ3LTEuMTAxNiAxLjQyOTctMS44MDQ3IDMuMjE0OC0yLjA4MiA1LjM1NTVsMC4wMzkwNjMgNC4wNzQyYzAgNC4wMTE3LTMuMjE0OCA3LjI2MTctNy4yMjY2IDcuMjYxNy00LjAxMTcgMC03LjI2OTUtMy4yNS03LjI2OTUtNy4yNjE3bC0wLjAwNzgxMy00LjgyMDNjMC4yMTQ4NC0zLjA3MDMgMC44MDA3OC01LjY0MDYgMS43NjU2LTcuNzE4OCAwLjk2NDg0LTIuMDcwMyAyLjA4OTgtMy44MzU5IDMuMzc1LTUuMzA0NyAxLjI4NTItMS40NjQ4IDIuNjQ0NS0yLjczNDQgNC4wNzQyLTMuODA0NyAxLjQyOTctMS4wNzQyIDIuNzUtMi4xNDQ1IDMuOTY4OC0zLjIxODggMS4yMTA5LTEuMDcwMyAyLjE5MTQtMi4yNSAyLjk0MTQtMy41MzkxIDAuNzUzOTEtMS4yODUyIDEuMDg5OC0yLjg5NDUgMS4wMTk1LTQuODIwMyAwLTMuMjg1Mi0wLjgwMDc4LTUuNzE0OC0yLjQwNjItNy4yODkxLTEuNjA5NC0xLjU3ODEtMy44NDM4LTIuMzYzMy02LjY5OTItMi4zNjMzLTEuOTM3NSAwLTMuNTg5OCAwLjM3ODkxLTQuOTgwNSAxLjEzMjgtMS4zOTg0IDAuNzUtMi41MzkxIDEuNzQ2MS0zLjQzNzUgMi45OTYxLTAuODkwNjIgMS4yNTM5LTEuNTU0NyAyLjcxODgtMS45ODQ0IDQuMzk0NS0wLjQyNTc4IDEuNjc1OC0wLjYyNSAzLjQ3MjctMC42MjUgNS4zOTg0IDAgNC4zNjMzLTMuNTA3OCA3LjkzNzUtNy44NjcyIDcuOTM3NS00LjM3MTEgMC03LjkwMjMtMy41NzQyLTcuOTAyMy03LjkzNzUgMC4wNjY0MDYtMy44NjMzIDAuNzMwNDctNy4zODI4IDEuOTc2Ni0xMC41OTggMS4yNTM5LTMuMjE0OCAzLjAwNzgtNi4wMDc4IDUuMjU3OC04LjM1OTQgMi4yNTM5LTIuMzYzMyA0Ljk2NDgtNC4xOTkyIDguMTQ0NS01LjUyMzQgMy4xNzU4LTEuMzI0MiA2LjczNDQtMS45ODQ0IDEwLjY2NC0xLjk4NDQgNS4wNzgxIDAgOS4zMDQ3IDAuNjkxNDEgMTIuNjk1IDIuMDg5OCAzLjM5ODQgMS4zOTg0IDYuMTMyOCAzLjEyNSA4LjIwMzEgNS4xOTUzIDIuMDc0MiAyLjA3NDIgMy41NTA4IDQuMzA4NiA0LjQ0NTMgNi42OTkyIDAuODkwNjIgMi40MDIzIDEuMzM1OSA0LjYzNjcgMS4zMzU5IDYuNjk5MiAwIDMuNDQxNC0wLjQ0NTMxIDYuMjYxNy0xLjMzNTkgOC40ODA1eiIvPgogPC9nPgo8L3N2Zz4K" alt="Lamp" width="100" height="100">  
+      <% end %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field">
+        <%= f.label :name, class: "col-sm-2 col-form-label" %><br />
+        <%= f.text_field :name, class: 'form-control mb-4' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :avatar, class: "col-sm-2 col-form-label" %><br />
+        <%= f.file_field :avatar, class: 'form-control form-control' %><br/>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mb-4'%>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password %> <i>(leave blank if you dont want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control mb-4' %>
+        <% if @minimum_password_length %>
+          <sub><%= @minimum_password_length %> characters minimum</sub>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control mb-4'%>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control mb-4'%>
+      </div>
+
+      <div class="d-grid">
+        <%= f.submit "Update", class:'btn btn-warning btn-xl' %>
+      </div>
+
+      <br/>
+      <br/>
+      <% end %>
+      <div class="field"> 
+        <h1 class= "row font-weight-bold justify-content-center "> DELETE ACCOUNT</h1>
+        <hr class="divider" />
+      </div>  
+      <p class = "row font-weight-bold justify-content-center">Are You Sure?<br/>
+        <%= link_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-danger btn-xl' %></p>
+      </div>    
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
