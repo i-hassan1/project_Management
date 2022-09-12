@@ -1,0 +1,10 @@
+.img_style {
+    width : 3%;
+    margin-left: 1.5rem;
+}
+
+.img {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+}
