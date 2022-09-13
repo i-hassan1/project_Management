@@ -1,3 +1,4 @@
 class Client < ApplicationRecord
-  belongs_to :project
+  has_one :project
+  has_many :payments
 end

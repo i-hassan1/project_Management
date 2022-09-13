@@ -10,5 +10,14 @@
   <%= @project.description %>
 </p>
 
+<p>
+  <strong>Client:</strong>
+  <%= @project.client.title %>
+</p>
+
+<%= render 'comments/add_comment' %>
+</br>
+<%= render 'comments/comment' %>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
